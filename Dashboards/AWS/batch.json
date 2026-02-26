@@ -2356,13 +2356,10 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "VictoriaMetrics",
-          "value": "P4169E866C3094E38"
-        },
+        "current": {},
         "includeAll": false,
         "label": "Datasource",
-        "name": "datasource",
+        "name": "DS_PROMETHEUS",
         "options": [],
         "query": "prometheus",
         "refresh": 1,
