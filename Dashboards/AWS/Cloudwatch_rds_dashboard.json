@@ -775,7 +775,7 @@
   },
   "time": {
     "from": "now-1h",
-    "to": "now-5m"
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
