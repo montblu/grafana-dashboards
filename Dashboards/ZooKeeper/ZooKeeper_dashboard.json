@@ -7262,16 +7262,24 @@
         "type": "datasource"
       },
       {
+        "allowCustomValue": false,
         "current": {},
-        "datasource": "$DS_PROMETHEUS",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(job)",
         "includeAll": false,
         "label": "Cluster",
         "name": "job",
         "options": [],
-        "query": "label_values(job)",
+        "query": {
+          "qryType": 1,
+          "query": "label_values(job)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 1,
-        "regex": "/*zookeeper*/",
+        "regex": "/.*zookeeper.*/",
         "sort": 1,
         "type": "query"
       },
@@ -7300,5 +7308,5 @@
   "timezone": "utc",
   "title": "Zookeeper Cluster Overview",
   "uid": "SDE76m7Zzz",
-  "version": 1
+  "version": 2
 }
