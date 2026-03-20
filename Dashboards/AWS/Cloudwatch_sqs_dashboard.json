@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 3,
+  "id": 33,
   "links": [],
   "panels": [
     {
@@ -162,7 +162,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "SQS",
+      "title": "Approximate age of oldest message (avg)",
       "type": "timeseries"
     },
     {
@@ -299,7 +299,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "SQS",
+      "title": "Approximate number of messages not visible (avg)",
       "type": "timeseries"
     },
     {
@@ -436,7 +436,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "SQS",
+      "title": "Approximate number of messages visible (avg)",
       "type": "timeseries"
     },
     {
@@ -474,7 +474,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -490,8 +489,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": 0
+                "color": "green"
               },
               {
                 "color": "red",
@@ -523,12 +521,11 @@
           "showLegend": true
         },
         "tooltip": {
-          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "",
@@ -573,7 +570,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "SQS",
+      "title": "Number Of Messages Received (sum)",
       "type": "timeseries"
     },
     {
@@ -611,7 +608,6 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -627,8 +623,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": 0
+                "color": "green"
               },
               {
                 "color": "red",
@@ -660,12 +655,11 @@
           "showLegend": true
         },
         "tooltip": {
-          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "alias": "",
@@ -710,7 +704,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "SQS",
+      "title": "Number Of Messages Sent (sum)",
       "type": "timeseries"
     }
   ],
@@ -727,7 +721,7 @@
       {
         "current": {
           "text": "VictoriaMetrics",
-          "value": "VictoriaMetrics"
+          "value": "P4169E866C3094E38"
         },
         "includeAll": false,
         "label": "Datasource",
@@ -745,7 +739,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "VictoriaMetrics"
         },
         "definition": "",
         "includeAll": true,
@@ -770,5 +764,5 @@
   "timezone": "utc",
   "title": "SQS",
   "uid": "aws-sqs",
-  "version": 31
+  "version": 1
 }
