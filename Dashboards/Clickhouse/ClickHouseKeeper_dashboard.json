@@ -1062,7 +1062,7 @@
       "1d"
     ]
   },
-  "timezone": "",
+  "timezone": "utc",
   "title": "ClickHouseKeeper Dashboard",
   "uid": "clickhouse-keeper",
   "version": 2,

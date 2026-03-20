@@ -7297,7 +7297,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "utc",
   "title": "Zookeeper Cluster Overview",
   "uid": "SDE76m7Zzz",
   "version": 1

@@ -1453,7 +1453,7 @@
       "30d"
     ]
   },
-  "timezone": "browser",
+  "timezone": "utc",
   "title": "ClickHouse in Kubernetes Queries",
   "uid": "clickhouse-queries",
   "version": 20230912

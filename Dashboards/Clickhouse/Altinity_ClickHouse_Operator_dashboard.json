@@ -5543,7 +5543,7 @@
       "30d"
     ]
   },
-  "timezone": "browser",
+  "timezone": "utc",
   "title": "Altinity ClickHouse Operator Dashboard",
   "uid": "clickhouse-operator",
   "version": 20092024,
