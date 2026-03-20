@@ -514,7 +514,7 @@
             "DBInstanceIdentifier": "$dbinstanceidentifier"
           },
           "exemplar": true,
-          "expr": "aws_rds_free_local_storage_minimum{dbinstance_identifier=~\"$dbinstanceidentifier\"}",
+          "expr": "aws_rds_free_storage_space_minimum{dbinstance_identifier=~\"$dbinstanceidentifier\"}",
           "expression": "aws_rds_database_connections_maximum{dbinstance_identifier=~\"$dbinstanceidentifier\"}  ",
           "functions": [],
           "group": {
