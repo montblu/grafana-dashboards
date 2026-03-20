@@ -1,6 +1,6 @@
 # AWS Dashboards
 
-These dashboards were created by Montblu for monitoring AWS services via CloudWatch metrics.
+These dashboards were created by Mont Blu for monitoring AWS services via CloudWatch metrics.
 
 ## Available Dashboards
 
