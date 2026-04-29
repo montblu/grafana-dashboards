@@ -11,3 +11,4 @@ These dashboards were created by Mont Blu for monitoring AWS services via CloudW
 - **RDS**
 - **SNS**
 - **SQS**
+- **MSK**
