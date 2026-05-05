@@ -115,7 +115,7 @@
           "refId": "A"
         }
       ],
-      "title": "Opensearch",
+      "title": "Cluster Status",
       "type": "gauge"
     },
     {
@@ -200,7 +200,7 @@
           "refId": "A"
         }
       ],
-      "title": "Opensearch",
+      "title": "Cluster Index Writes Blocked",
       "type": "gauge"
     },
     {
@@ -340,7 +340,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "Opensearch",
+      "title": "CPU Utilization",
       "type": "timeseries"
     },
     {
@@ -475,7 +475,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "Opensearch",
+      "title": "Memory Utilization",
       "type": "timeseries"
     },
     {
@@ -613,7 +613,7 @@
           "statistic": "Average"
         }
       ],
-      "title": "Opensearch",
+      "title": "Free Local Storage",
       "type": "timeseries"
     },
     {
@@ -751,7 +751,7 @@
           "statistic": "Maximum"
         }
       ],
-      "title": "Opensearch",
+      "title": "Deleted Documents",
       "type": "timeseries"
     }
   ],
@@ -806,7 +806,7 @@
   },
   "timepicker": {},
   "timezone": "utc",
-  "title": "Opensearch",
+  "title": "OpenSearch",
   "uid": "aws-opensearch",
   "version": 1
 }
