@@ -1,4 +1,4 @@
-# RabbitMQ Dashboards
+# Temporal Dashboards
 
 These dashboards can be found on Github.com at:
 https://github.com/temporalio/dashboards
