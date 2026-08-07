@@ -531,7 +531,7 @@
   "schemaVersion": 40,
   "tags": [
     "AWS",
-    "cloudwatch",
+    "Cloudwatch",
     "EFS"
   ],
   "templating": {

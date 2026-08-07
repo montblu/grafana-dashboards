@@ -329,8 +329,9 @@
   "schemaVersion": 38,
   "style": "dark",
   "tags": [
-    "cloudwatch",
-    "elasticache"
+    "AWS",
+    "Cloudwatch",
+    "Elasticache"
   ],
   "templating": {
     "list": [
