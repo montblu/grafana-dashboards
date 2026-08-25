@@ -1,12 +1,33 @@
 {
   "__inputs": [
     {
-      "description": "",
-      "label": "VictoriaMetrics",
       "name": "DS_VICTORIAMETRICS",
+      "label": "VictoriaMetrics",
+      "description": "",
+      "type": "datasource",
       "pluginId": "prometheus",
-      "pluginName": "Prometheus",
-      "type": "datasource"
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
     }
   ],
   "annotations": {
@@ -14,21 +35,28 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "grafana",
-          "uid": "-- Grafana --"
+          "type": "datasource",
+          "uid": "grafana"
         },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
-  "description": "Visualize AWS Elasticache metrics",
+  "description": "Visualize AWS S3 metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -37,17 +65,20 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "AWS updates this metric only once a day",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -56,14 +87,16 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -72,61 +105,96 @@
               "mode": "off"
             }
           },
+          "fieldMinMax": false,
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
+                "value": 0
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 24,
+        "h": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 1,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [
-            "mean",
-            "max",
-            "min"
+            "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
+          "alias": "",
+          "application": {
+            "filter": ""
+          },
           "datasource": {
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "dimensions": {
+            "QueueName": "$queue"
+          },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "aws_elasticache_cpuutilization_average{cache_cluster_id=~\"$cacheclusterid\"} ",
+          "exemplar": false,
+          "expr": "sum by(bucket_name) (aws_s3_number_of_objects_average{bucket_name=~\"$bucket\"})",
+          "fullMetaSearch": false,
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "host": {
+            "filter": ""
+          },
+          "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "{{cache_cluster_id}}",
+          "interval": "1h",
+          "item": {
+            "filter": ""
+          },
+          "legendFormat": "{{bucket_name}}",
+          "metricEditorMode": 0,
+          "metricName": "NumberOfMessagesDeleted",
+          "metricQueryType": 0,
+          "mode": 0,
+          "namespace": "AWS/SQS",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "region": "$region",
+          "statistic": "Average",
+          "useBackend": false
         }
       ],
-      "title": "CPU Utilization (avg)",
+      "title": "Number of Objects",
       "type": "timeseries"
     },
     {
@@ -134,17 +202,20 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "aws updates this metric only once a day",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -153,14 +224,16 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -170,12 +243,13 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -188,207 +262,141 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 10
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
       },
-      "id": 3,
+      "id": 8,
       "options": {
         "legend": {
           "calcs": [
-            "mean",
-            "max",
-            "min"
+            "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
+          "hideZeros": false,
+          "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0",
       "targets": [
         {
+          "alias": "",
+          "application": {
+            "filter": ""
+          },
           "datasource": {
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "dimensions": {
+            "QueueName": "$queue"
+          },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "aws_elasticache_freeable_memory_minimum{cache_cluster_id=~\"$cacheclusterid\"}",
+          "exemplar": false,
+          "expr": "sum by(bucket_name) (aws_s3_bucket_size_bytes_average{bucket_name=~\"$bucket\"})",
+          "fullMetaSearch": false,
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "host": {
+            "filter": ""
+          },
+          "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "{{cache_cluster_id}}",
+          "interval": "1h",
+          "item": {
+            "filter": ""
+          },
+          "legendFormat": "{{bucket_name}}",
+          "metricEditorMode": 0,
+          "metricName": "NumberOfMessagesDeleted",
+          "metricQueryType": 0,
+          "mode": 0,
+          "namespace": "AWS/SQS",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "region": "$region",
+          "statistic": "Average",
+          "useBackend": false
         }
       ],
-      "title": "Freeable Memory (min)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 20
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "min",
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "aws_elasticache_curr_connections_maximum{cache_cluster_id=~\"$cacheclusterid\"}",
-          "instant": false,
-          "legendFormat": "{{cache_cluster_id}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Database Connections (max)",
+      "title": "Bucket Size",
       "type": "timeseries"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 38,
-  "style": "dark",
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 42,
   "tags": [
     "AWS",
-    "Cloudwatch",
-    "Elasticache"
+    "CloudWatch",
+    "S3"
   ],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "VictoriaMetrics",
-          "value": "${DS_VICTORIAMETRICS}"
+          "value": "VictoriaMetrics"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Datasource",
-        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "prometheus",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
+        "allValue": ".*",
         "current": {
-          "selected": true,
           "text": "All",
-          "value": "$__all"
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(aws_elasticache_cpuutilization_average{exported_job=\"aws_elasticache\"},cache_cluster_id)",
-        "hide": 0,
+        "definition": "label_values(aws_s3_bucket_size_bytes_average,bucket_name)",
         "includeAll": true,
-        "label": "CacheClusterId",
-        "multi": false,
-        "name": "cacheclusterid",
+        "label": "Bucket Name",
+        "multi": true,
+        "name": "bucket",
         "options": [],
         "query": {
-          "query": "label_values(aws_elasticache_cpuutilization_average{exported_job=\"aws_elasticache\"},cache_cluster_id)",
+          "qryType": 1,
+          "query": "label_values(aws_s3_bucket_size_bytes_average,bucket_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
-  "title": "Elasticache",
-  "uid": "aws-elasticache",
+  "title": "S3",
+  "uid": "aws-s3",
+  "version": 1,
   "weekStart": ""
 }

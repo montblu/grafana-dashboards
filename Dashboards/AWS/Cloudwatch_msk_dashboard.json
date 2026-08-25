@@ -737,9 +737,10 @@
   "refresh": "1m",
   "schemaVersion": 40,
   "tags": [
+    "AWS",
     "Multiplayer",
-    "cloudwatch",
-    "kafka",
+    "Cloudwatch",
+    "Kafka",
     "msk"
   ],
   "templating": {
