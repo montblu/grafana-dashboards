@@ -7,6 +7,7 @@ These dashboards were created by Mont Blu for monitoring AWS services via CloudW
 - **Batch**
 - **EFS**
 - **ElastiCache**
+- **ElastiCache Valkey**
 - **OpenSearch**
 - **RDS**
 - **SNS**
